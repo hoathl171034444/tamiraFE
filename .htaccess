@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^blog/([^/]*).html$ /blog/view.php?nid=$1 [L]

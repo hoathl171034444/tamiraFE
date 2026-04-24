@@ -1,0 +1,314 @@
+/* Tamira UI - Light Modern Theme (override, safe) */
+
+:root {
+  --tm-bg: #f6f8fb;
+  --tm-surface: #ffffff;
+  --tm-surface-2: #fbfcfe;
+  --tm-text: #0f172a;
+  --tm-muted: #475569;
+  --tm-line: rgba(15, 23, 42, 0.10);
+  --tm-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+  --tm-shadow-2: 0 18px 45px rgba(15, 23, 42, 0.12);
+  --tm-radius: 18px;
+  --tm-radius-sm: 14px;
+
+  /* Brand */
+  --tm-primary: #1b6a60;
+  --tm-primary-2: #12a794;
+  --tm-accent: #f82671;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body.tamira-ui {
+  color: var(--tm-text) !important;
+  background: radial-gradient(900px 420px at 15% 0%, rgba(18, 167, 148, 0.10), transparent 60%),
+    radial-gradient(700px 360px at 90% 15%, rgba(248, 38, 113, 0.07), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, var(--tm-bg) 100%) !important;
+  background-attachment: fixed;
+  letter-spacing: normal !important;
+}
+
+/* Neutralize the dark overlay from previous theme */
+body.tamira-ui::before {
+  display: none !important;
+}
+
+body.tamira-ui .light-page,
+body.tamira-ui .light,
+body.tamira-ui .dark,
+body.tamira-ui .bg-default,
+body.tamira-ui section,
+body.tamira-ui header,
+body.tamira-ui footer {
+  color: var(--tm-text) !important;
+}
+
+body.tamira-ui p,
+body.tamira-ui li,
+body.tamira-ui .lead,
+body.tamira-ui .blockquote-footer,
+body.tamira-ui .text-secondary {
+  color: var(--tm-muted) !important;
+  line-height: 1.75;
+}
+
+body.tamira-ui h1,
+body.tamira-ui h2,
+body.tamira-ui h3,
+body.tamira-ui h4,
+body.tamira-ui h5,
+body.tamira-ui h6,
+body.tamira-ui strong,
+body.tamira-ui b {
+  color: var(--tm-text) !important;
+  letter-spacing: -0.01em !important;
+}
+
+body.tamira-ui h2 {
+  font-size: clamp(1.85rem, 3.4vw, 2.6rem);
+  font-weight: 750;
+}
+
+body.tamira-ui h3 {
+  font-size: clamp(1.35rem, 2.7vw, 1.9rem);
+  font-weight: 700;
+}
+
+body.tamira-ui .text-primary {
+  color: var(--tm-primary) !important;
+}
+
+/* Sections spacing: keep existing utilities, but ensure rhythm */
+body.tamira-ui section,
+body.tamira-ui header,
+body.tamira-ui footer {
+  padding-top: clamp(56px, 6vw, 96px) !important;
+  padding-bottom: clamp(44px, 5vw, 86px) !important;
+}
+
+body.tamira-ui #header-img,
+body.tamira-ui #header-img--0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Navbar */
+body.tamira-ui nav#nav-menu-btn {
+  background: rgba(255, 255, 255, 0.86) !important;
+  border-bottom: 1px solid var(--tm-line) !important;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+body.tamira-ui #nav-menu-btn .row {
+  background: transparent !important;
+}
+
+body.tamira-ui .navbar-brand img {
+  filter: none !important;
+}
+
+body.tamira-ui .navbar-nav .nav-link {
+  color: rgba(15, 23, 42, 0.78) !important;
+  font-weight: 650;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.tamira-ui .navbar-nav .nav-link:hover,
+body.tamira-ui .navbar-nav .nav-link.active {
+  color: var(--tm-text) !important;
+  background: rgba(27, 106, 96, 0.10) !important;
+}
+
+/* Buttons */
+body.tamira-ui .btn,
+body.tamira-ui button.btn {
+  border-radius: 999px !important;
+  font-weight: 700;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  padding: 0.78rem 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+body.tamira-ui .btn:hover,
+body.tamira-ui button.btn:hover {
+  transform: translateY(-1px);
+}
+
+body.tamira-ui .btn-primary,
+body.tamira-ui .btn-secondary,
+body.tamira-ui #nav-menu-btn .btn-secondary,
+body.tamira-ui .btn.btn-success {
+  background: linear-gradient(135deg, var(--tm-primary) 0%, var(--tm-primary-2) 100%) !important;
+  border-color: rgba(0, 0, 0, 0) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 24px rgba(18, 167, 148, 0.22);
+}
+
+body.tamira-ui .btn-primary:hover,
+body.tamira-ui .btn-secondary:hover,
+body.tamira-ui #nav-menu-btn .btn-secondary:hover,
+body.tamira-ui .btn.btn-success:hover {
+  filter: brightness(1.02);
+  box-shadow: 0 16px 28px rgba(18, 167, 148, 0.26);
+}
+
+body.tamira-ui .btn-outline-primary {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(27, 106, 96, 0.28) !important;
+  color: var(--tm-primary) !important;
+}
+
+body.tamira-ui .btn-outline-primary:hover {
+  background: rgba(27, 106, 96, 0.10) !important;
+}
+
+/* Hero image */
+body.tamira-ui #header-img {
+  position: relative;
+}
+
+body.tamira-ui #header-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.40) 100%);
+}
+
+body.tamira-ui #header-img img {
+  position: relative;
+  z-index: 0;
+  min-height: clamp(320px, 48vw, 720px);
+  object-fit: cover;
+  width: 100%;
+  border-radius: 0 !important;
+  filter: contrast(1.02) saturate(1.0) brightness(0.92) !important;
+}
+
+/* Cards/surfaces */
+body.tamira-ui section .content-box,
+body.tamira-ui header .content-box,
+body.tamira-ui footer .content-box,
+body.tamira-ui .gallery-item,
+body.tamira-ui .modal-content,
+body.tamira-ui #contact-center-form form,
+body.tamira-ui #testimonial-2col-2 .border-x2,
+body.tamira-ui #blog-3col-carousel .item.content-box,
+body.tamira-ui #footer-logo-text-social-2 .col-lg-5,
+body.tamira-ui #footer-logo-text-social-2 .col-md {
+  background: var(--tm-surface) !important;
+  border: 1px solid var(--tm-line) !important;
+  border-radius: var(--tm-radius) !important;
+  box-shadow: var(--tm-shadow);
+  backdrop-filter: none !important;
+}
+
+body.tamira-ui #desc-img-text-10 .content-box,
+body.tamira-ui #desc-text-img-1 .content-box,
+body.tamira-ui #benefits-3col-21 .content-box {
+  padding: clamp(20px, 3vw, 32px);
+}
+
+/* Services images: keep rounded but cleaner */
+body.tamira-ui #benefits-3col-21 img.rounded-circle {
+  border-radius: var(--tm-radius) !important;
+  border: 1px solid rgba(27, 106, 96, 0.18) !important;
+  box-shadow: var(--tm-shadow);
+  filter: none !important;
+}
+
+body.tamira-ui #benefits-3col-21 .content-box {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+body.tamira-ui #benefits-3col-21 .content-box:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--tm-shadow-2);
+  border-color: rgba(27, 106, 96, 0.25) !important;
+}
+
+/* Form */
+body.tamira-ui .form-control,
+body.tamira-ui select.form-control {
+  background: var(--tm-surface-2) !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  color: var(--tm-text) !important;
+  border-radius: var(--tm-radius-sm) !important;
+  min-height: 50px;
+  box-shadow: none !important;
+}
+
+body.tamira-ui .form-control:focus,
+body.tamira-ui select.form-control:focus {
+  border-color: rgba(18, 167, 148, 0.45) !important;
+  box-shadow: 0 0 0 4px rgba(18, 167, 148, 0.12) !important;
+}
+
+body.tamira-ui .form-control::placeholder {
+  color: rgba(71, 85, 105, 0.75) !important;
+}
+
+/* Icons and dividers */
+body.tamira-ui .svg-primary,
+body.tamira-ui svg.svg-primary {
+  fill: var(--tm-primary) !important;
+}
+
+body.tamira-ui .svg-secondary,
+body.tamira-ui svg.svg-secondary {
+  fill: var(--tm-accent) !important;
+}
+
+body.tamira-ui .border,
+body.tamira-ui .border-grid,
+body.tamira-ui .border-x2,
+body.tamira-ui .border-top {
+  border-color: var(--tm-line) !important;
+}
+
+/* Floating call button */
+body.tamira-ui #tool-btn-right-2 {
+  right: 20px;
+  bottom: 20px;
+  padding: 0 !important;
+}
+
+body.tamira-ui #tool-btn-right-2 .btn {
+  border-radius: 16px !important;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+}
+
+body.tamira-ui #tool-btn-right-2 .btn p {
+  color: #ffffff !important;
+}
+
+@media (max-width: 991.98px) {
+  body.tamira-ui .navbar-brand img {
+    max-height: 64px;
+  }
+
+  body.tamira-ui #tool-btn-right-2 {
+    right: 12px;
+    bottom: 14px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  body.tamira-ui section,
+  body.tamira-ui header,
+  body.tamira-ui footer {
+    padding-top: 52px !important;
+    padding-bottom: 46px !important;
+  }
+}
+
