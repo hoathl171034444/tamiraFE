@@ -44,6 +44,13 @@
     var imgEl = lightbox.querySelector('.la-lightbox-img');
     var closeBtn = lightbox.querySelector('[data-lightbox-close]');
 
+    function open(src) {
+      if (!src) return;
+      imgEl.src = src;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+
     function close() {
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
@@ -53,11 +60,13 @@
     document.querySelectorAll('[data-lightbox]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        var href = a.getAttribute('href');
-        if (!href) return;
-        imgEl.src = href;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
+        open(a.getAttribute('href'));
+      });
+    });
+
+    document.querySelectorAll('.la-results-grid img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        open(img.getAttribute('src'));
       });
     });
 
@@ -210,9 +219,17 @@
     if (!countdowns.length) return;
 
     countdowns.forEach(function (countdown) {
+      var loopDaysAttr = countdown.getAttribute('data-loop-days');
+      var loopDays = loopDaysAttr ? parseInt(loopDaysAttr, 10) : 0;
+      var loopStartAttr = countdown.getAttribute('data-loop-start');
+      var loopStart = loopStartAttr ? new Date(loopStartAttr).getTime() : Date.now();
+      var useLoop = Number.isFinite(loopDays) && loopDays > 0;
+
       var deadlineAttr = countdown.getAttribute('data-deadline');
       var deadline = deadlineAttr ? new Date(deadlineAttr).getTime() : NaN;
-      if (Number.isNaN(deadline)) return;
+
+      if (!useLoop && Number.isNaN(deadline)) return;
+      if (useLoop && Number.isNaN(loopStart)) loopStart = Date.now();
 
       var dayEl = countdown.querySelector('[data-time-days]');
       var hourEl = countdown.querySelector('[data-time-hours]');
@@ -221,7 +238,15 @@
       var timer = null;
 
       function setTime() {
-        var diff = Math.max(0, deadline - Date.now());
+        var diff;
+        if (useLoop) {
+          var cycleMs = loopDays * 86400000;
+          var elapsed = Date.now() - loopStart;
+          var mod = ((elapsed % cycleMs) + cycleMs) % cycleMs;
+          diff = cycleMs - mod;
+        } else {
+          diff = Math.max(0, deadline - Date.now());
+        }
         var days = Math.floor(diff / 86400000);
         var hours = Math.floor((diff % 86400000) / 3600000);
         var minutes = Math.floor((diff % 3600000) / 60000);
@@ -232,7 +257,7 @@
         if (minuteEl) minuteEl.textContent = String(minutes).padStart(2, '0');
         if (secondEl) secondEl.textContent = String(seconds).padStart(2, '0');
 
-        if (diff <= 0 && timer) {
+        if (!useLoop && diff <= 0 && timer) {
           clearInterval(timer);
         }
       }
